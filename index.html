@@ -328,35 +328,6 @@
     </footer>
 
     <script src="assets/js/main.js"></script>
-    <script>
-        const checkbox = document.getElementById('checkbox');
-        const body = document.body;
-
-        // Cek preferensi user atau simpan di localStorage
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme) {
-            body.classList.add(savedTheme);
-            if (savedTheme === 'dark-mode') {
-                checkbox.checked = true;
-            }
-        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            // Jika belum ada preferensi, ikuti mode sistem
-            body.classList.add('dark-mode');
-            checkbox.checked = true;
-        }
-
-        checkbox.addEventListener('change', () => {
-            if (checkbox.checked) {
-                body.classList.add('dark-mode');
-                localStorage.setItem('theme', 'dark-mode');
-            } else {
-                body.classList.remove('dark-mode');
-                localStorage.setItem('theme', 'light-mode');
-            }
-        });
-
-        // ... (kode JavaScript yang ada) ...
-    </script>
 </body>
 
 </html>
