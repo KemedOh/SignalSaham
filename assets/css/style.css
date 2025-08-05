@@ -1,4 +1,13 @@
 :root {
+  /* Mode Terang (Default) */
+  --bg-color: #f8fafc;
+  --text-color: #0f172a;
+  --card-bg: white;
+  --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  --border-color: rgba(0, 0, 0, 0.05);
+  --hover-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+
+  /* Warna Utama lainnya */
   --primary: #6366f1;
   --primary-dark: #4f46e5;
   --secondary: #0ea5e9;
@@ -15,6 +24,16 @@
   --shadow-lg: 0 35px 60px -12px rgba(0, 0, 0, 0.3);
 }
 
+/* Mode Gelap */
+body.dark-mode {
+  --bg-color: #0f172a;
+  --text-color: #f8fafc;
+  --card-bg: #1e293b;
+  --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  --border-color: rgba(255, 255, 255, 0.1);
+  --hover-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -24,12 +43,10 @@
 body {
   font-family: 'Inter', sans-serif;
   line-height: 1.6;
-  color: var(--dark);
+  color: var(--text-color);
+  background-color: var(--bg-color);
   overflow-x: hidden;
-}
-
-/* Penyesuaian padding untuk konten agar tidak tertutup navbar */
-body {
+  transition: background-color 0.3s ease, color 0.3s ease;
   padding-top: 5rem;
 }
 
@@ -38,9 +55,9 @@ body {
   position: fixed;
   top: 0;
   width: 100%;
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--card-bg);
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid var(--border-color);
   z-index: 1000;
   transition: all 0.3s ease;
 }
@@ -73,7 +90,7 @@ body {
 
 .nav-links a {
   text-decoration: none;
-  color: var(--dark);
+  color: var(--text-color);
   font-weight: 500;
   transition: color 0.3s ease;
 }
@@ -233,10 +250,7 @@ body {
 /* Features Section */
 .features {
   padding: 6rem 0;
-  background: linear-gradient(rgba(248, 250, 252, 0.9), rgba(248, 250, 252, 0.9)), url('../img/bg-image.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  background: var(--bg-color);
 }
 
 .container {
@@ -275,12 +289,12 @@ body {
 }
 
 .feature-card {
-  background: white;
+  background: var(--card-bg);
   padding: 2.5rem;
   border-radius: 24px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--card-shadow);
   transition: all 0.3s ease;
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border-color);
 }
 
 .feature-card:hover {
@@ -327,7 +341,7 @@ body {
 /* How it Works */
 .how-it-works {
   padding: 6rem 0;
-  background: white;
+  background: var(--bg-color);
 }
 
 .steps {
@@ -363,6 +377,7 @@ body {
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 1rem;
+  color: var(--text-color);
 }
 
 .step-description {
@@ -372,9 +387,7 @@ body {
 /* Testimonials */
 .testimonials {
   padding: 6rem 0;
-  background: linear-gradient(rgba(248, 250, 252, 0.95), rgba(248, 250, 252, 0.95)), url('../img/feature.jpg');
-  background-size: cover;
-  background-position: center;
+  background: var(--bg-color);
 }
 
 .testimonial-grid {
@@ -385,11 +398,12 @@ body {
 }
 
 .testimonial-card {
-  background: white;
+  background: var(--card-bg);
   padding: 2.5rem;
   border-radius: 24px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--card-shadow);
   position: relative;
+  border: 1px solid var(--border-color);
 }
 
 .quote-icon {
@@ -410,6 +424,7 @@ body {
   margin-bottom: 1.5rem;
   line-height: 1.7;
   font-style: italic;
+  color: var(--text-color);
 }
 
 .testimonial-author {
@@ -433,6 +448,7 @@ body {
 .author-info h4 {
   font-weight: 600;
   margin-bottom: 0.25rem;
+  color: var(--text-color);
 }
 
 .author-info span {
@@ -440,10 +456,34 @@ body {
   font-size: 0.875rem;
 }
 
-/* Screenshot Cards */
+/* App Showcase Section */
+.app-showcase {
+  padding: 6rem 0;
+  background: var(--bg-color);
+}
+
+.screenshot-card {
+  background: var(--card-bg);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
+  /* Tambahan */
+}
+
+.screenshot-card h3 {
+  color: var(--text-color);
+}
+
+.screenshot-card p {
+  color: var(--gray);
+}
+
 .screenshot-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15) !important;
+  box-shadow: var(--hover-shadow);
+  /* Tambahan */
 }
 
 .screenshot-card img {
@@ -574,6 +614,65 @@ body {
   transition: all 0.3s ease;
 }
 
+/* Tombol Switch Mode */
+.theme-switch-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-right: 1rem;
+}
+
+.theme-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.theme-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+}
+
+input:checked+.slider {
+  background-color: var(--primary);
+}
+
+input:checked+.slider:before {
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
 /* Animations */
 @keyframes fadeInUp {
   from {
@@ -611,8 +710,6 @@ body {
 
 /* Media Query untuk Tampilan Mobile */
 @media (max-width: 768px) {
-
-  /* Navbar */
   .hamburger-menu {
     display: flex;
   }
@@ -624,9 +721,9 @@ body {
     top: 5rem;
     left: 0;
     width: 100%;
-    background: rgba(255, 255, 255, 0.95);
+    background: var(--card-bg);
     backdrop-filter: blur(20px);
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: 1px solid var(--border-color);
     transform: translateX(-100%);
     transition: transform 0.3s ease-in-out;
     padding: 1rem 0;
@@ -640,7 +737,7 @@ body {
   .nav-links li {
     text-align: center;
     padding: 1rem 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid var(--border-color);
   }
 
   .nav-links li:last-child {
@@ -653,11 +750,9 @@ body {
     max-width: 200px;
   }
 
-  /* Hero Section */
   .hero {
     padding: 8rem 1rem;
     text-align: center;
-    /* Memusatkan teks di mobile */
   }
 
   .hero-content {
@@ -685,7 +780,6 @@ body {
     gap: 1.5rem;
   }
 
-  /* General */
   .section-title {
     font-size: 2rem;
   }
@@ -694,12 +788,10 @@ body {
     font-size: 1rem;
   }
 
-  /* Features */
   .features-grid {
     grid-template-columns: 1fr;
   }
 
-  /* Testimonials */
   .testimonial-grid {
     grid-template-columns: 1fr;
   }

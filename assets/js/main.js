@@ -12,18 +12,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Navbar scroll effect
-window.addEventListener('scroll', function () {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 100) {
-        navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-        navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-    } else {
-        navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-        navbar.style.boxShadow = 'none';
-    }
-});
-
 // Intersection Observer for animations
 const observerOptions = {
     threshold: 0.1,
@@ -35,11 +23,11 @@ const observer = new IntersectionObserver(function (entries) {
         if (entry.isIntersecting) {
             entry.target.style.opacity = '1';
             entry.target.style.transform = 'translateY(0)';
+            observer.unobserve(entry.target); // Tambahkan ini agar animasi hanya berjalan sekali
         }
     });
 }, observerOptions);
 
-// Observe all elements with animate-on-scroll class
 document.addEventListener('DOMContentLoaded', function () {
     const animateElements = document.querySelectorAll('.animate-on-scroll');
     animateElements.forEach((el, index) => {
@@ -86,11 +74,35 @@ if (statsSection) {
 }
 
 // ---
-// PERBAIKAN: Mobile menu toggle
+// PERBAIKAN: Mobile menu toggle dan Dark Mode Switch
 // ---
 document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelector('.nav-links');
     const hamburger = document.querySelector('.hamburger-menu');
+    const checkbox = document.getElementById('checkbox');
+    const body = document.body;
+
+    // Dark Mode Toggle
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        body.classList.add(savedTheme);
+        if (savedTheme === 'dark-mode') {
+            checkbox.checked = true;
+        }
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        body.classList.add('dark-mode');
+        checkbox.checked = true;
+    }
+
+    checkbox.addEventListener('change', () => {
+        if (checkbox.checked) {
+            body.classList.add('dark-mode');
+            localStorage.setItem('theme', 'dark-mode');
+        } else {
+            body.classList.remove('dark-mode');
+            localStorage.setItem('theme', 'light-mode');
+        }
+    });
 
     // Toggle menu saat hamburger diklik
     if (hamburger) {
@@ -109,48 +121,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// --- PERBAIKAN: Navbar scroll effect ---
+window.addEventListener('scroll', function () {
+    const navbar = document.querySelector('.navbar');
+    // Cek apakah navbar ada dan scrollY lebih besar dari 50
+    if (navbar && window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else if (navbar) {
+        navbar.classList.remove('scrolled');
+    }
+});
+// -------------------------------------
 
 // Add some interactive effects
-document.querySelectorAll('.feature-card, .testimonial-card').forEach(card => {
+document.querySelectorAll('.feature-card, .testimonial-card, .screenshot-card').forEach(card => {
     card.addEventListener('mouseenter', function () {
-        this.style.transform = 'translateY(-10px) scale(1.02)';
+        this.style.transform = 'translateY(-10px)';
     });
 
     card.addEventListener('mouseleave', function () {
-        this.style.transform = 'translateY(0) scale(1)';
-    });
-});
-
-// Parallax effect for hero section
-window.addEventListener('scroll', function () {
-    const scrolled = window.pageYOffset;
-    const hero = document.querySelector('.hero');
-    if (hero) {
-        const rate = scrolled * -0.5;
-        hero.style.backgroundPositionY = `${rate}px`;
-        // Hapus `hero.style.transform` karena akan berkonflik dengan background-attachment: fixed di CSS
-        // hero.style.transform = `translateY(${rate}px)`;
-    }
-});
-
-// Add loading animation
-window.addEventListener('load', function () {
-    document.body.style.opacity = '1';
-    document.body.style.transition = 'opacity 0.3s ease';
-});
-
-// Track button clicks (Facebook Pixel simulation)
-document.querySelectorAll('a[href*="wa.me"], .whatsapp-btn').forEach(btn => {
-    btn.addEventListener('click', function () {
-        // Simulate Facebook Pixel tracking
-        console.log('Contact event tracked');
-
-        // Add a subtle success feedback
-        const originalText = this.innerHTML;
-        this.innerHTML = '<i class="fas fa-check"></i> Menghubungkan...';
-        setTimeout(() => {
-            this.innerHTML = originalText;
-        }, 2000);
+        this.style.transform = 'translateY(0)';
     });
 });
 
@@ -158,4 +148,16 @@ document.querySelectorAll('a[href*="wa.me"], .whatsapp-btn').forEach(btn => {
 document.querySelectorAll('.floating').forEach((el, index) => {
     el.style.animationDelay = `${Math.random() * 2}s`;
     el.style.animationDuration = `${3 + Math.random() * 2}s`;
+});
+
+// Track button clicks (Facebook Pixel simulation)
+document.querySelectorAll('a[href*="wa.me"], .whatsapp-btn, a[href*="trial.php"]').forEach(btn => {
+    btn.addEventListener('click', function () {
+        console.log('Conversion event tracked');
+        const originalText = this.innerHTML;
+        this.innerHTML = '<i class="fas fa-check"></i> Menghubungkan...';
+        setTimeout(() => {
+            this.innerHTML = originalText;
+        }, 2000);
+    });
 });
