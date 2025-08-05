@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signal Saham - Analisis Kuantitatif Trading Saham</title>
+    <meta name="description"
+        content="Platform analisis kuantitatif terdepan untuk trading saham dengan success rate tinggi">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Signalsaham</a>
+            <div class="hamburger-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#features">Fitur</a></li>
+                <li><a href="#how-it-works">Cara Kerja</a></li>
+                <li><a href="#testimonials">Testimoni</a></li>
+                <li><a href="#contact">Kontak</a></li>
+                <li><a href="https://mtp.signalsaham.com/trial.php" class="cta-button">Daftar Sekarang</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="animate-on-scroll">
+                Analisis Kuantitatif<br>
+                <span
+                    style="background: linear-gradient(45deg, #ffd700, #ff6b6b); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Trading
+                    Saham</span>
+            </h1>
+            <p class="animate-on-scroll">
+                Platform analisis kuantitatif yang memudahkan Anda memilih saham berdasarkan perhitungan matematika,
+                statistik, dan pola yang terbukti memberikan profit terbaik dengan success rate tinggi.
+            </p>
+            <div class="hero-buttons animate-on-scroll">
+                <a href="https://mtp.signalsaham.com/trial.php" class="btn-primary">
+                    <i class="fas fa-rocket"></i> Daftar Sekarang
+                </a>
+                <a href="#features" class="btn-secondary">
+                    <i class="fas fa-play"></i> Pelajari Lebih
+                </a>
+            </div>
+
+            <div class="stats animate-on-scroll">
+                <div class="stat-item floating">
+                    <span class="stat-number">30</span>
+                    <span class="stat-label">Metode Analisis</span>
+                </div>
+                <div class="stat-item floating" style="animation-delay: 0.5s;">
+                    <span class="stat-number">900</span>
+                    <span class="stat-label">Emiten Tersedia</span>
+                </div>
+                <div class="stat-item floating" style="animation-delay: 1s;">
+                    <span class="stat-number">1200</span>
+                    <span class="stat-label">User Ritel</span>
+                </div>
+                <div class="stat-item floating" style="animation-delay: 1.5s;">
+                    <span class="stat-number">4</span>
+                    <span class="stat-label">User Corporation</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2 class="section-title">Mengapa Memilih Signal Saham?</h2>
+                <p class="section-subtitle">
+                    STOP trading tanpa analisis! Gunakan Signal Saham untuk memilih saham dengan fundamental baik dan
+                    berpotensi profit 1-2% per hari.
+                </p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3 class="feature-title">Data Lengkap & Akurat</h3>
+                    <p class="feature-description">
+                        Data backtest yang komprehensif membantu Anda menganalisis saham pilihan dengan akurasi tinggi,
+                        meningkatkan conviction dalam setiap keputusan trading.
+                    </p>
+                </div>
+
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="feature-title">Interface Mudah Digunakan</h3>
+                    <p class="feature-description">
+                        Platform yang user-friendly memudahkan Anda menentukan kapan waktu yang tepat untuk buy dan sell
+                        berdasarkan rekomendasi dari data backtest.
+                    </p>
+                </div>
+
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3 class="feature-title">Success Rate Tinggi</h3>
+                    <p class="feature-description">
+                        Dapatkan rekomendasi saham dengan success rate di atas 80% berdasarkan analisis kuantitatif yang
+                        telah terbukti memberikan hasil optimal.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2 class="section-title">Cara Kerja Signal Saham</h2>
+                <p class="section-subtitle">
+                    Tiga langkah mudah untuk memulai trading saham dengan analisis kuantitatif
+                </p>
+            </div>
+
+            <div class="steps">
+                <div class="step animate-on-scroll">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Pilih Metode Analisis</h3>
+                    <p class="step-description">
+                        Pilih dari 30+ metode analisis kuantitatif yang sesuai dengan gaya trading atau investasi Anda.
+                    </p>
+                </div>
+
+                <div class="step animate-on-scroll">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Review Rekomendasi</h3>
+                    <p class="step-description">
+                        Dapatkan rekomendasi saham dengan data backtest lengkap dan tingkat akurasi yang tinggi.
+                    </p>
+                </div>
+
+                <div class="step animate-on-scroll">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Execute & Monitor</h3>
+                    <p class="step-description">
+                        Lakukan transaksi berdasarkan signal dan monitor performa dengan tools yang disediakan.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="app-showcase" style="padding: 6rem 0; background: white;">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2 class="section-title">Interface Yang Mudah & Powerful</h2>
+                <p class="section-subtitle">
+                    Lihat tampilan aplikasi Signal Saham yang user-friendly dan dilengkapi data lengkap
+                </p>
+            </div>
+
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem;">
+                <div class="screenshot-card animate-on-scroll"
+                    style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); transition: all 0.3s ease;">
+                    <img src="assets/img/mtp2-portrait.png" alt="Signal Saham Dashboard"
+                        style="width: 100%; height: 400px; object-fit: cover;">
+                    <div style="padding: 1.5rem;">
+                        <h3 style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; margin-bottom: 0.5rem;">
+                            Dashboard Utama</h3>
+                        <p style="color: var(--gray); font-size: 0.9rem;">Interface yang clean dan mudah dipahami untuk
+                            monitoring portfolio Anda.</p>
+                    </div>
+                </div>
+
+                <div class="screenshot-card animate-on-scroll"
+                    style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); transition: all 0.3s ease;">
+                    <img src="assets/img/mtp3-portrait.png" alt="Analisis Teknikal"
+                        style="width: 100%; height: 400px; object-fit: cover;">
+                    <div style="padding: 1.5rem;">
+                        <h3 style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; margin-bottom: 0.5rem;">
+                            Analisis Mendalam</h3>
+                        <p style="color: var(--gray); font-size: 0.9rem;">Tools analisis kuantitatif dengan berbagai
+                            indikator dan metode.</p>
+                    </div>
+                </div>
+
+                <div class="screenshot-card animate-on-scroll"
+                    style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); transition: all 0.3s ease;">
+                    <img src="assets/img/mtp4-portrait.png" alt="Signal & Rekomendasi"
+                        style="width: 100%; height: 400px; object-fit: cover;">
+                    <div style="padding: 1.5rem;">
+                        <h3 style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; margin-bottom: 0.5rem;">
+                            Signal & Rekomendasi</h3>
+                        <p style="color: var(--gray); font-size: 0.9rem;">Rekomendasi real-time berdasarkan analisis
+                            data historis dan pattern.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2 class="section-title">Apa Kata Pengguna Kami</h2>
+                <p class="section-subtitle">
+                    Testimonial nyata dari pengguna yang telah merasakan manfaat Signal Saham
+                </p>
+            </div>
+
+            <div class="testimonial-grid">
+                <div class="testimonial-card animate-on-scroll">
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "Dengan Metode TB8 dan Heatmap saya dapat profit 55% dari saham ANTM. Alhamdulillah bisa kasih
+                        uang belanja istri untuk setahun penuh!"
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="assets/img/iskandar.png" alt="Iskandar"
+                            style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
+                        <div class="author-info">
+                            <h4>Iskandar</h4>
+                            <span>Salatiga</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card animate-on-scroll">
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "Sebagai pemula, Signal Saham sangat membantu. 2 minggu pertama profit 500rb, akhir bulan total
+                        gain 2.5 juta. Sekarang sudah lewat UMR!"
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="assets/img/yulia.png" alt="Yulia"
+                            style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
+                        <div class="author-info">
+                            <h4>Yulia</h4>
+                            <span>Jakarta</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content animate-on-scroll">
+                <h2>Siap Meningkatkan Performa Trading Anda?</h2>
+                <p>
+                    Bergabunglah dengan ribuan trader yang telah merasakan manfaat analisis kuantitatif Signal Saham.
+                    Mulai trial gratis hari ini!
+                </p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="https://mtp.signalsaham.com/trial.php" class="btn-primary">
+                        <i class="fas fa-rocket"></i>Daftar Sekarang
+                    </a>
+                    <a href="https://wa.me/6281802037981?text=Halo%20saya%20tertarik%20dengan%20Signal%20Saham"
+                        class="whatsapp-btn" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Chat WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Signal Saham</h3>
+                    <p>Platform analisis kuantitatif terdepan untuk trading saham dengan success rate tinggi.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Kontak Kami</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Jl. Pramuka No 96 Kunigan</p>
+                    <p><i class="fas fa-phone"></i> +62 85759065777</p>
+                    <p><i class="fas fa-envelope"></i> admin@signalsaham.com</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#home">Beranda</a>
+                    <a href="#features">Fitur</a>
+                    <a href="#how-it-works">Cara Kerja</a>
+                    <a href="#testimonials">Testimonial</a>
+                    <a href="#contact">Kontak</a>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Disclaimer</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Signal Saham. All rights reserved. | Designed by Ahmad Fauzi | Distributed by ATENSI
+                    INDONESIA</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>
