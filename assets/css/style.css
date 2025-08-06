@@ -64,6 +64,16 @@ body {
   transition: all 0.3s ease;
 }
 
+/* Navbar scroll effect */
+.navbar.scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: var(--card-shadow);
+}
+
+body.dark-mode .navbar.scrolled {
+  background: rgba(30, 41, 59, 0.95);
+}
+
 .nav-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -88,6 +98,7 @@ body {
   gap: 2rem;
   list-style: none;
   align-items: center;
+  transition: all 0.3s ease-in-out;
 }
 
 .nav-links a {
@@ -471,7 +482,6 @@ body {
   box-shadow: var(--card-shadow);
   transition: all 0.3s ease;
   border: 1px solid var(--border-color);
-  /* Tambahan */
 }
 
 .screenshot-card h3 {
@@ -485,7 +495,6 @@ body {
 .screenshot-card:hover {
   transform: translateY(-10px);
   box-shadow: var(--hover-shadow);
-  /* Tambahan */
 }
 
 .screenshot-card img {
@@ -601,7 +610,7 @@ body {
   color: rgba(255, 255, 255, 0.5);
 }
 
-/* Hamburger Menu */
+/* Hamburger Menu (Sembunyikan di desktop secara default) */
 .hamburger-menu {
   display: none;
   flex-direction: column;
@@ -612,7 +621,7 @@ body {
 .hamburger-menu .bar {
   width: 25px;
   height: 3px;
-  background-color: var(--dark);
+  background-color: var(--text-color);
   transition: all 0.3s ease;
 }
 
@@ -688,9 +697,16 @@ input:checked+.slider:before {
   }
 }
 
+/* CSS untuk animasi yang dipicu oleh JS */
 .animate-on-scroll {
   opacity: 0;
-  animation: fadeInUp 0.6s ease forwards;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.animate-on-scroll.fade-in-up {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Floating elements */
@@ -710,50 +726,126 @@ input:checked+.slider:before {
   }
 }
 
-/* Media Query untuk Tampilan Mobile */
+/* Media Query untuk Tampilan Mobile - PERBAIKAN NAVBAR */
 @media (max-width: 768px) {
+
+  /* Tampilkan hamburger di mobile */
   .hamburger-menu {
     display: flex;
+    z-index: 1001;
   }
 
+  /* Sembunyikan menu secara default di mobile */
   .nav-links {
-    display: flex;
     flex-direction: column;
-    position: fixed;
-    top: 5rem;
+    position: absolute;
+    top: 100%;
     left: 0;
+    right: 0;
     width: 100%;
     background: var(--card-bg);
     backdrop-filter: blur(20px);
     border-top: 1px solid var(--border-color);
-    transform: translateX(-100%);
-    transition: transform 0.3s ease-in-out;
-    padding: 1rem 0;
-    z-index: 999;
+    border-bottom: 1px solid var(--border-color);
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    gap: 0;
   }
 
+  /* Aturan saat kelas 'active' ditambahkan oleh JavaScript */
   .nav-links.active {
-    transform: translateX(0);
+    max-height: 400px;
+    padding: 1rem 0 0.5rem 0;
   }
 
   .nav-links li {
     text-align: center;
-    padding: 1rem 0;
+    padding: 0.75rem 1rem;
     border-bottom: 1px solid var(--border-color);
+    margin: 0;
   }
 
   .nav-links li:last-child {
     border-bottom: none;
+    padding-bottom: 1rem;
   }
 
+  /* Styling khusus untuk CTA buttons di mobile */
   .nav-links .cta-button {
-    display: block;
-    margin: 0 auto;
-    max-width: 200px;
+    display: inline-block;
+    margin: 0.25rem auto;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+    max-width: 160px;
+    text-align: center;
   }
 
+  /* Container untuk theme switch di mobile */
+  .theme-switch-wrapper {
+    justify-content: center;
+    margin: 0.5rem 0 0 0;
+  }
+
+  /* Perbaikan untuk theme switch di mobile */
+  .theme-switch {
+    width: 50px;
+    height: 28px;
+  }
+
+  .slider:before {
+    height: 22px;
+    width: 22px;
+    left: 3px;
+    bottom: 3px;
+  }
+
+  input:checked+.slider:before {
+    transform: translateX(22px);
+  }
+
+  /* Styling untuk regular nav links di mobile */
+  .nav-links a:not(.cta-button) {
+    display: block;
+    padding: 0.5rem 1rem;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+  }
+
+  .nav-links a:not(.cta-button):hover {
+    background: rgba(0, 128, 128, 0.1);
+    color: var(--primary);
+  }
+
+  /* Animasi hamburger menu */
+  .hamburger-menu.active .bar:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+  }
+
+  .hamburger-menu.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger-menu.active .bar:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+  }
+
+  /* Pastikan navbar container tidak overflow */
+  .nav-container {
+    padding: 0.75rem 1.5rem;
+    position: relative;
+  }
+
+  /* Styling logo di mobile */
+  .logo {
+    font-size: 1.3rem;
+  }
+
+  /* Perbaikan untuk hero section agar tidak tertutup navbar */
   .hero {
-    padding: 8rem 1rem;
+    padding: 6rem 1rem 4rem 1rem;
     text-align: center;
   }
 
@@ -773,13 +865,14 @@ input:checked+.slider:before {
   .btn-primary,
   .btn-secondary {
     width: 100%;
-    max-width: 300px;
+    max-width: 280px;
   }
 
   .stats {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    margin-top: 2rem;
   }
 
   .section-title {

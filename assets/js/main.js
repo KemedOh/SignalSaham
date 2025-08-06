@@ -42,23 +42,47 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Hamburger menu toggle
-    if (hamburger) {
-        hamburger.addEventListener('click', () => {
+    // Hamburger menu toggle - PERBAIKAN
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
             navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
         });
     }
 
-    // Tutup menu saat link diklik (untuk mobile)
+    // Tutup menu saat link diklik (untuk mobile) - PERBAIKAN
     if (navLinks) {
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 if (window.innerWidth <= 768) {
                     navLinks.classList.remove('active');
+                    hamburger.classList.remove('active');
                 }
             });
         });
     }
+
+    // Tutup menu ketika klik di luar navbar - BARU
+    document.addEventListener('click', function (event) {
+        if (navbar && !navbar.contains(event.target)) {
+            if (navLinks && hamburger) {
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('active');
+            }
+        }
+    });
+
+    // Tutup menu ketika window di-resize ke desktop - BARU
+    window.addEventListener('resize', function () {
+        if (window.innerWidth > 768) {
+            if (navLinks && hamburger) {
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('active');
+            }
+        }
+    });
 
     // Smooth scrolling for navigation links
     navAnchors.forEach(anchor => {
@@ -96,19 +120,14 @@ document.addEventListener('DOMContentLoaded', function () {
     const observer = new IntersectionObserver(function (entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+                entry.target.classList.add('fade-in-up');
                 observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
     if (animateElements.length > 0) {
-        animateElements.forEach((el, index) => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition =
-                `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+        animateElements.forEach(el => {
             observer.observe(el);
         });
     }
@@ -123,8 +142,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 current = target;
                 clearInterval(timer);
             }
-            element.textContent = Math.floor(current) + (element.textContent.includes('%') ? '%' : element
-                .textContent.includes('+') ? '+' : '');
+
+            // Preserve original formatting (%, +, etc.)
+            let suffix = '';
+            const originalText = element.getAttribute('data-original') || element.textContent;
+            if (originalText.includes('%')) suffix = '%';
+            if (originalText.includes('+')) suffix = '+';
+            if (originalText.includes('K')) suffix = 'K';
+            if (originalText.includes('M')) suffix = 'M';
+
+            element.textContent = Math.floor(current) + suffix;
         }, 20);
     }
 
@@ -134,8 +161,12 @@ document.addEventListener('DOMContentLoaded', function () {
             if (entry.isIntersecting) {
                 const counters = entry.target.querySelectorAll('.stat-number');
                 counters.forEach(counter => {
-                    const target = parseInt(counter.textContent);
-                    animateCounter(counter, target);
+                    // Store original text for suffix preservation
+                    counter.setAttribute('data-original', counter.textContent);
+                    const target = parseInt(counter.textContent.replace(/[^\d]/g, ''));
+                    if (!isNaN(target)) {
+                        animateCounter(counter, target);
+                    }
                 });
                 statsObserver.unobserve(entry.target);
             }
@@ -146,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function () {
         statsObserver.observe(statsSection);
     }
 
-    // Add some interactive effects
+    // Add interactive effects for cards
     interactiveCards.forEach(card => {
         card.addEventListener('mouseenter', function () {
             this.style.transform = 'translateY(-10px)';
@@ -156,7 +187,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Add some random floating animation delays
+    // Add random floating animation delays
     floatingElements.forEach((el, index) => {
         el.style.animationDelay = `${Math.random() * 2}s`;
         el.style.animationDuration = `${3 + Math.random() * 2}s`;
@@ -166,15 +197,164 @@ document.addEventListener('DOMContentLoaded', function () {
     // Bagian 4: Pelacakan & Feedback
     // ------------------------------------------
 
-    // Track button clicks
+    // Track button clicks dengan feedback visual yang lebih baik
     ctaButtons.forEach(btn => {
-        btn.addEventListener('click', function () {
-            console.log('Conversion event tracked');
+        btn.addEventListener('click', function (e) {
+            // Prevent double clicks
+            if (this.classList.contains('processing')) {
+                e.preventDefault();
+                return;
+            }
+
+            console.log('Conversion event tracked:', this.href || this.textContent);
+
             const originalText = this.innerHTML;
-            this.innerHTML = '<i class="fas fa-check"></i> Menghubungkan...';
+            this.classList.add('processing');
+
+            // Animasi loading yang lebih smooth
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Menghubungkan...';
+
+            // Simulasi proses loading
             setTimeout(() => {
-                this.innerHTML = originalText;
-            }, 2000);
+                this.innerHTML = '<i class="fas fa-check"></i> Tersambung!';
+
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                    this.classList.remove('processing');
+                }, 1500);
+            }, 1000);
         });
     });
+
+    // ------------------------------------------
+    // Bagian 5: Optimisasi Performance & UX
+    // ------------------------------------------
+
+    // Lazy loading untuk gambar (jika ada)
+    const images = document.querySelectorAll('img[data-src]');
+    const imageObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.removeAttribute('data-src');
+                imageObserver.unobserve(img);
+            }
+        });
+    });
+
+    images.forEach(img => imageObserver.observe(img));
+
+    // Preload critical resources
+    function preloadResource(href, as) {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.href = href;
+        link.as = as;
+        document.head.appendChild(link);
+    }
+
+    // Smooth page transitions
+    window.addEventListener('beforeunload', function () {
+        document.body.style.opacity = '0';
+        document.body.style.transition = 'opacity 0.3s ease';
+    });
+
+    // Initialize tooltips atau popover jika diperlukan
+    function initTooltips() {
+        const tooltipElements = document.querySelectorAll('[data-tooltip]');
+        tooltipElements.forEach(el => {
+            el.addEventListener('mouseenter', function () {
+                const tooltip = document.createElement('div');
+                tooltip.className = 'tooltip';
+                tooltip.textContent = this.getAttribute('data-tooltip');
+                tooltip.style.cssText = `
+                    position: absolute;
+                    background: var(--dark);
+                    color: white;
+                    padding: 0.5rem 1rem;
+                    border-radius: 8px;
+                    font-size: 0.875rem;
+                    z-index: 9999;
+                    pointer-events: none;
+                    opacity: 0;
+                    transform: translateY(-10px);
+                    transition: all 0.3s ease;
+                `;
+                document.body.appendChild(tooltip);
+
+                // Position tooltip
+                const rect = this.getBoundingClientRect();
+                tooltip.style.left = rect.left + 'px';
+                tooltip.style.top = (rect.top - tooltip.offsetHeight - 10) + 'px';
+
+                // Show tooltip
+                setTimeout(() => {
+                    tooltip.style.opacity = '1';
+                    tooltip.style.transform = 'translateY(0)';
+                }, 10);
+
+                this._tooltip = tooltip;
+            });
+
+            el.addEventListener('mouseleave', function () {
+                if (this._tooltip) {
+                    this._tooltip.remove();
+                    this._tooltip = null;
+                }
+            });
+        });
+    }
+
+    // Initialize semua fungsi tambahan
+    initTooltips();
+
+    // Debug mode untuk development
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        console.log('🚀 SignalSaham - Debug Mode Aktif');
+        console.log('📱 Mobile Menu:', navLinks ? 'Ready' : 'Not Found');
+        console.log('🎨 Theme Switch:', checkbox ? 'Ready' : 'Not Found');
+        console.log('📊 Stats Section:', statsSection ? 'Ready' : 'Not Found');
+        console.log('🎯 CTA Buttons:', ctaButtons.length + ' found');
+    }
+
+    // Performance monitoring
+    if ('performance' in window) {
+        window.addEventListener('load', function () {
+            setTimeout(() => {
+                const perfData = performance.getEntriesByType('navigation')[0];
+                if (perfData) {
+                    console.log(`⚡ Page Load Time: ${Math.round(perfData.loadEventEnd - perfData.loadEventStart)}ms`);
+                }
+            }, 0);
+        });
+    }
+
+    // Service Worker registration (jika diperlukan untuk PWA)
+    if ('serviceWorker' in navigator && 'production' === 'production') {
+        navigator.serviceWorker.register('/sw.js')
+            .then(registration => console.log('SW registered:', registration))
+            .catch(error => console.log('SW registration failed:', error));
+    }
+
+    // Keyboard navigation support
+    document.addEventListener('keydown', function (e) {
+        // ESC untuk tutup mobile menu
+        if (e.key === 'Escape' && navLinks && navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+            hamburger.classList.remove('active');
+        }
+
+        // Tab navigation untuk accessibility
+        if (e.key === 'Tab') {
+            document.body.classList.add('keyboard-nav');
+        }
+    });
+
+    // Remove keyboard nav class on mouse use
+    document.addEventListener('mousedown', function () {
+        document.body.classList.remove('keyboard-nav');
+    });
+
+    console.log('✅ SignalSaham Website - Semua fungsi berhasil dimuat!');
 });
