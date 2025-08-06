@@ -7,26 +7,28 @@
   --border-color: rgba(0, 0, 0, 0.05);
   --hover-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
 
-  /* Warna Utama lainnya */
-  --primary: #6366f1;
-  --primary-dark: #4f46e5;
+  /* Warna Utama */
+  --primary: #008080;
+  --primary-dark: #006877;
   --secondary: #0ea5e9;
   --success: #10b981;
   --warning: #f59e0b;
   --danger: #ef4444;
-  --dark: #0f172a;
+  --dark: #0D3B3E;
   --light: #f8fafc;
   --gray: #64748b;
-  --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+  --gradient-1: linear-gradient(135deg, #008080 0%, #006877 100%);
   --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
   --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+
   --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   --shadow-lg: 0 35px 60px -12px rgba(0, 0, 0, 0.3);
 }
 
 /* Mode Gelap */
 body.dark-mode {
-  --bg-color: #0f172a;
+  --bg-color: #0D3B3E;
   --text-color: #f8fafc;
   --card-bg: #1e293b;
   --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
@@ -119,7 +121,7 @@ body {
 /* Hero Section */
 .hero {
   min-height: 100vh;
-  background: linear-gradient(rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8)), url('../img/header.jpg');
+  background: linear-gradient(rgba(0, 128, 128, 0.85), rgba(13, 59, 62, 0.85)), url('../img/header.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -497,7 +499,7 @@ body {
 /* CTA Section */
 .cta-section {
   padding: 6rem 0;
-  background: linear-gradient(rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9)), url('../img/page-header.jpg');
+  background: linear-gradient(rgba(0, 128, 128, 0.9), rgba(13, 59, 62, 0.9)), url('../img/page-header.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
