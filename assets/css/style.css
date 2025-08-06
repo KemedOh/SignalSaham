@@ -757,7 +757,7 @@ input:checked+.slider:before {
 
   /* Aturan saat kelas 'active' ditambahkan oleh JavaScript */
   .nav-links.active {
-    max-height: 400px;
+    max-height: 9999px;
     padding: 1rem 0 0.5rem 0;
   }
 
